@@ -37,7 +37,7 @@ public class GuiMainMenu extends Canvas implements MouseListener, MouseMotionLis
 	ImageIcon bIconRegular, bIconHover, bIconClicked;
 	GuiOutOfGame cards;
 	
-	BufferedImage heart, boot, cupcake, potion, apple, sun, s, u, p, e, r, m, a, g, i, c, a2, l, l2, o, v, e2, p2, a3, r2, t, y, ex;
+	BufferedImage heart, boot, cupcake, potion, apple, sun, s, u, p, e, r, m, a, g, i, c, a2, l, l2, o, v, e2, p2, a3, r2, t, y;//, ex;
 	GradientPaint backgroundPaint;
 	Color backgroundBottom, backgroundTop;
 	double backgroundBottomR, backgroundBottomG, backgroundBottomB;
@@ -95,6 +95,22 @@ public class GuiMainMenu extends Canvas implements MouseListener, MouseMotionLis
 		potion = ImageIO.read(getClass().getResourceAsStream("/Strength.png"));
 		apple = ImageIO.read(getClass().getResourceAsStream("/Apple.png"));
 		sun = ImageIO.read(getClass().getResourceAsStream("/Sun.png"));
+		s = ImageIO.read(getClass().getResourceAsStream("/S.png"));
+		u = ImageIO.read(getClass().getResourceAsStream("/U.png"));
+		p = ImageIO.read(getClass().getResourceAsStream("/P.png"));
+		e= ImageIO.read(getClass().getResourceAsStream("/E.png"));
+		r = ImageIO.read(getClass().getResourceAsStream("/R.png"));
+		m = ImageIO.read(getClass().getResourceAsStream("/M.png"));
+		a = ImageIO.read(getClass().getResourceAsStream("/A.png"));
+		g = ImageIO.read(getClass().getResourceAsStream("/G.png"));
+		i = ImageIO.read(getClass().getResourceAsStream("/I.png"));
+		c = ImageIO.read(getClass().getResourceAsStream("/C.png"));
+		l = ImageIO.read(getClass().getResourceAsStream("/L.png"));
+		o = ImageIO.read(getClass().getResourceAsStream("/O.png"));
+		v = ImageIO.read(getClass().getResourceAsStream("/V.png"));
+		t = ImageIO.read(getClass().getResourceAsStream("/T.png"));
+		y = ImageIO.read(getClass().getResourceAsStream("/Y.png"));
+
 		}catch(IOException e){
 			e.printStackTrace();
 		}
@@ -133,7 +149,7 @@ public class GuiMainMenu extends Canvas implements MouseListener, MouseMotionLis
 		graphics.add(new Graphic(this, false, Graphic.R2));
 		graphics.add(new Graphic(this, false, Graphic.T));
 		graphics.add(new Graphic(this, false, Graphic.Y));
-		graphics.add(new Graphic(this, false, Graphic.EX));
+		//graphics.add(new Graphic(this, false, Graphic.EX));
 	}
 
 	public void addComponents()
@@ -446,126 +462,126 @@ public class GuiMainMenu extends Canvas implements MouseListener, MouseMotionLis
 			createBufferStrategy(2);
 			buffer = getBufferStrategy();
 		}
-		Graphics2D g = (Graphics2D) buffer.getDrawGraphics();
-		g.scale(scaleW, scaleH);
-		g.setPaint(backgroundPaint);
-		//g.setColor(getBackground());
-		g.fillRect(0, 0, 1920, 1080);
-		g.setFont(motdFont);
+		Graphics2D g2d = (Graphics2D) buffer.getDrawGraphics();
+		g2d.scale(scaleW, scaleH);
+		g2d.setPaint(backgroundPaint);
+		//g2d.setColor(getBackground());
+		g2d.fillRect(0, 0, 1920, 1080);
+		g2d.setFont(motdFont);
 		for(Graphic gr : graphics)
 		{
 			switch(gr.type)
 			{
 				case Graphic.HEART:
-					g.drawImage(heart, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(heart, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.CUPCAKE:
-					g.drawImage(cupcake, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(cupcake, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.POTION:
-					g.drawImage(potion, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(potion, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.APPLE:
-					g.drawImage(apple, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(apple, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.SUN:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.S:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(s, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.U:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(u, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.P:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(p, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.E:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(e, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.R:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(r, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.M:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(m, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.A2:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(a, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.G:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(g, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.I:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(i, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.C:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(c, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.A:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(a, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.L:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(l, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.L2:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(l, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.O:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(o, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.V:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(v, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.E2:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(e, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.P2:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(p, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.A3:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(a, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.R2:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(r, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.T:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(t, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
 				case Graphic.Y:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(y, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 					break;
-				case Graphic.EX:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
-					break;
+//				case Graphic.EX:
+//					g2d.drawImage(ex, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+//					break;
 				default:
-					g.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
+					g2d.drawImage(sun, (int)(gr.x+(gr.vX*interpolation)), (int)(gr.y + gr.vY*interpolation), Graphic.width, Graphic.height, null);
 			}
 		}
 
-		g.setColor(new Color(50, 50, 50, 100));
-		g.fillRect(0, 0, 1920, 20);
-		g.setColor(Color.WHITE);
-		fontMetrics = g.getFontMetrics();
-		g.drawString(motd, motdX, 16);
+		g2d.setColor(new Color(50, 50, 50, 100));
+		g2d.fillRect(0, 0, 1920, 20);
+		g2d.setColor(Color.WHITE);
+		fontMetrics = g2d.getFontMetrics();
+		g2d.drawString(motd, motdX, 16);
 		if(updateAvailable)
 		{
-			g.setColor(new Color(0, 250, 50, 150));
-			g.fillRect(0, 20, 1920, 20);
-			g.setColor(new Color(0, 50, 250, 150));
-			g.drawString("UPDATE AVAILABLE! Cick here to update.", 0, 36);
+			g2d.setColor(new Color(0, 250, 50, 150));
+			g2d.fillRect(0, 20, 1920, 20);
+			g2d.setColor(new Color(0, 50, 250, 150));
+			g2d.drawString("UPDATE AVAILABLE! Cick here to update.", 0, 36);
 		}else if(updating)
 		{
-			g.setColor(new Color(200, 0, 200, 150));
-			g.fillRect(0, 20, 1920, 20);
-			g.setColor(Color.GREEN);
-			g.fillRect(0, 20, (int)(1920*updater.getRatioDone()), 20);
-			g.setColor(Color.WHITE);
-			g.drawString(updater.getStatus(), 0, 36);
-			g.drawString("Click here to see the change log.", 1920 - fontMetrics.stringWidth("Click here to see the change log."), 36);
+			g2d.setColor(new Color(200, 0, 200, 150));
+			g2d.fillRect(0, 20, 1920, 20);
+			g2d.setColor(Color.GREEN);
+			g2d.fillRect(0, 20, (int)(1920*updater.getRatioDone()), 20);
+			g2d.setColor(Color.WHITE);
+			g2d.drawString(updater.getStatus(), 0, 36);
+			g2d.drawString("Click here to see the change log2d.", 1920 - fontMetrics.stringWidth("Click here to see the change log2d."), 36);
 		}
-		buttons.renderAll(g, 1);
-		g.setColor(Color.WHITE);
-		g.drawString("Version " + Game.VERSION, 0, 1080);
+		buttons.renderAll(g2d, 1);
+		g2d.setColor(Color.WHITE);
+		g2d.drawString("Version " + Game.VERSION, 0, 1080);
 		buffer.show();
 	}
 
@@ -623,8 +639,8 @@ class Graphic
 	A3 = 30,
 	R2 = 31,
 	T = 32,
-	Y = 33,
-	EX = 34;
+	Y = 33;
+	//EX = 34;
 	
 	public static final int width = 64, height = 64;
 	int type;
@@ -654,7 +670,7 @@ class Graphic
 
 	public void setLocationForLetter(int type)
 	{
-		double multiplier = (type-10)/(12.4);
+		double multiplier = (type-10)/(11.9);
 		x = (1920/2) * multiplier;
 		y = (1080/6)+(type*20);
 		vY = 0;
