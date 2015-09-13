@@ -176,7 +176,7 @@ public class ServerGame extends Game
 			}
 			super.doCommand(input);
 		}
-		else if(input.toLowerCase().equals("/list") || input.toLowerCase().equals("/who") || input.toLowerCase().equals("players"))
+		else if(input.toLowerCase().equals("/list") || input.toLowerCase().equals("/who") || input.toLowerCase().equals("/players"))
 		{
 			String playerString = "";
 			for(Player p : players)
