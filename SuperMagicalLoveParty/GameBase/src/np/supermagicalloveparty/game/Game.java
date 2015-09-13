@@ -467,7 +467,7 @@ public class Game implements GameLoopable{
 		if(settings.isFullscreenMode())
 			frame.setFullScreen(false);
 		specialMode = false;
-		GuiOutOfGame menu = new GuiOutOfGame();
+		GuiOutOfGame menu = new GuiOutOfGame(frame);
 		frame.setGui(menu);
 		if(soundManager != null)
 			soundManager.pauseMusic();

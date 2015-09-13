@@ -4,8 +4,8 @@ public class Driver
 {
 	public static void main(String[] args)
 	{
-		GuiOutOfGame gui = new GuiOutOfGame();
-		new Frame(gui);
+		Frame frame = new Frame();
+		new GuiOutOfGame(frame);
 	}
 	
 }

@@ -16,7 +16,7 @@ public class Frame extends JFrame implements ComponentListener{
 	private GraphicsDevice vc;
 	GameCanvas canvas;
 	
-	public Frame(GuiOutOfGame gui)
+	public Frame() 
 	{
 		setVisible(true);
 		setSize(1600, 910);
@@ -34,6 +34,11 @@ public class Frame extends JFrame implements ComponentListener{
 	    this.addComponentListener(this);
 		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		vc = env.getDefaultScreenDevice();
+	}
+
+	public Frame(GuiOutOfGame gui)
+	{
+		this();
 		setGui(gui);
 	}
 	

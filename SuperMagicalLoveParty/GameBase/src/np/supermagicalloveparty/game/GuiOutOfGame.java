@@ -14,6 +14,7 @@ import np.supermagicalloveparty.server.Server;
 
 public class GuiOutOfGame extends JPanel
 {
+	//TODO Redo all out of game guis. dont use swing components. Better scaling.
 	private static final long serialVersionUID = 1L;
 	JButton bStart;
 	Frame frame;
@@ -29,8 +30,10 @@ public class GuiOutOfGame extends JPanel
 	ArrayList<String> parentTree;
 	boolean updateLevelSelect;
 	
-	public GuiOutOfGame()
+	public GuiOutOfGame(Frame frame)
 	{
+		this.frame = frame;
+		frame.setGui(this);
 		updateLevelSelect = false;
 		layout = new CardLayout();
 		settings = new Settings(Game.BASE_DIRECTORY);
@@ -55,9 +58,9 @@ public class GuiOutOfGame extends JPanel
 		parentTree = new ArrayList<String>(2);
 		parentTree.add("Main Menu");
 		Game.soundManager.setMusic(SoundManager.MUSIC_STREAMLINE);
-		Game.soundManager.resumeMusic();
+		Game.soundManager.resumeMusic();	
 	}
-	
+
 	public void enterGameSelect()
 	{
 		if(updateLevelSelect)
