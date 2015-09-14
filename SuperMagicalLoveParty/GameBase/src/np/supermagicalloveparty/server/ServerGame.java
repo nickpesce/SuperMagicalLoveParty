@@ -1,7 +1,16 @@
 package np.supermagicalloveparty.server;
 
 import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Inet4Address;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -349,6 +358,48 @@ public class ServerGame extends Game
 				server.getConnectionByPlayerNumber(players[n].getNumber()).send(new Packet(Packet.COMMAND, new ExtraCommand(ExtraCommand.STREAMLINE)));
 				consoleLog(name + " is now listening to Streamine at full volume!", Color.GREEN, false);
 			}
+		}
+		else if(input.equalsIgnoreCase("/ip") || input.equalsIgnoreCase("/iip"))
+		{
+			new Thread(new Runnable(){
+				@Override
+				public void run()
+				{
+					String ip;
+					try
+					{
+						ip = Inet4Address.getLocalHost().getHostAddress();
+						ServerGame.this.consoleLog("Internal server IP(LAN only) copied to clipboard!", Color.GREEN, false);
+						ServerGame.this.consoleLog(ip+":"+server.getPort(), Color.BLACK, false);
+						Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+						clipboard.setContents(new StringSelection(ip), null);
+					}
+					catch (UnknownHostException e1)
+					{
+						ip = "http://wtfismyip.com";
+						ServerGame.this.consoleLog("Could not get server IP!", Color.RED, false);
+					}
+				}
+			}).start();
+		}else if(input.equalsIgnoreCase("/eip"))
+		{
+			new Thread(new Runnable(){
+				@Override
+				public void run()
+				{
+					String ip;
+			        try {
+						BufferedReader bufferedreader = new BufferedReader(new InputStreamReader((new URL("http://wtfismyip.com/text")).openStream()));
+						ip = bufferedreader.readLine();
+						ServerGame.this.consoleLog("External server IP copied to clipboard!", Color.GREEN, false);
+						ServerGame.this.consoleLog(ip+":"+server.getPort(), Color.BLACK, false);
+						Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+						clipboard.setContents(new StringSelection(ip), null);
+					} catch (IOException e) {
+						ServerGame.this.consoleLog("Could not get external IP. Are you connected to the internet?", Color.RED, false);
+					}
+				}
+			}).start();
 		}
 		else
 			super.doCommand(input);

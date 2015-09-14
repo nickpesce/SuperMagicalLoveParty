@@ -47,7 +47,7 @@ public class Server
 		this.maxPlayers = maxPlayers;
 		FileHelper.readArrayListToFile(bannedIps, "Server/", "banned-ips.txt");
 		running = true;
-		this.port = port;
+		this.setPort(port);
 		try
 		{
 			if(level == null)
@@ -154,7 +154,7 @@ public class Server
 						Server.this.game.consoleLog("Could not get server IP!", Color.RED, false);
 					}
 				}
-				Server.this.game.consoleLog(ip+":"+port, Color.BLACK, false);
+				Server.this.game.consoleLog(ip+":"+getPort(), Color.BLACK, false);
 				Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 				clipboard.setContents(new StringSelection(ip), null);
 			}
@@ -415,6 +415,14 @@ public class Server
 	public int getMaxPlayers()
 	{
 		return maxPlayers;
+	}
+
+	public int getPort() {
+		return port;
+	}
+
+	public void setPort(int port) {
+		this.port = port;
 	}
 }
 
