@@ -199,6 +199,15 @@ public class GuiMainMenu extends Canvas implements MouseListener, MouseMotionLis
 				Game.soundManager.playSound(SoundManager.MENU_SPARKLE);
 			}
 		}));
+		buttons.add(new GuiButton(0, 0, 0, 0, "Credits", new Runnable(){
+
+			@Override
+			public void run()
+			{
+				cards.enterCredits();
+				Game.soundManager.playSound(SoundManager.MENU_SPARKLE);
+			}
+		}));
 		/*
 		bStart = new JButton("Play (Local)");
 		bStart.addMouseListener(this);
@@ -245,7 +254,8 @@ public class GuiMainMenu extends Canvas implements MouseListener, MouseMotionLis
 		buttons.get(3).setLocation((int)((1920/2.0)-(50*WIDTH_MODIFIER)), (int)((1080/3.0)+60*Y_SPACING));
 		buttons.get(4).setSize((int)(100*WIDTH_MODIFIER), (int)(40*HEIGHT_MODIFIER));
 		buttons.get(4).setLocation((int)((1920/2.0)-(50*WIDTH_MODIFIER)), (int)((1080/3.0)+90*Y_SPACING));
-		
+		buttons.get(5).setSize((int)(100*WIDTH_MODIFIER), (int)(40*HEIGHT_MODIFIER));
+		buttons.get(5).setLocation((int)((1920/2.0)-(50*WIDTH_MODIFIER)), (int)((1080/3.0)+120*Y_SPACING));		
 		//titleX = (1920/2)-(titleWidth/2);
 		//titleY = (1080/4)-(titleHeight/2);
 		titleMaxY = (1080/6) + 64;

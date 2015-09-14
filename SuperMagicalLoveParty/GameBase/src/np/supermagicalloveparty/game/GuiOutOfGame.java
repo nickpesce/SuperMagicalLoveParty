@@ -26,6 +26,7 @@ public class GuiOutOfGame extends JPanel
 	GuiMultiplayerSelect multiplayer;
 	GuiServerSetup serverSetup;
 	GuiOptions options;
+	GuiCredits credits;
 	Settings settings;
 	ArrayList<String> parentTree;
 	boolean updateLevelSelect;
@@ -50,11 +51,13 @@ public class GuiOutOfGame extends JPanel
 		levelEditor = new GuiLevelEditor(this);
 		multiplayer = new GuiMultiplayerSelect(this);
 		serverSetup = new GuiServerSetup(this);
+		credits = new GuiCredits(this);
 		add(options, "Options");
 		add(levelEditor, "Level Editor");
 		add(gameSelect, "Game Select");
 		add(multiplayer, "Multiplayer");
 		add(serverSetup, "Server Setup");
+		add(credits, "Credits");
 		parentTree = new ArrayList<String>(2);
 		parentTree.add("Main Menu");
 		Game.soundManager.setMusic(SoundManager.MUSIC_STREAMLINE);
@@ -111,6 +114,12 @@ public class GuiOutOfGame extends JPanel
 	{
 		layout.show(this, "Server Setup");
 		parentTree.add("Server Setup");		
+	}
+	
+	public void enterCredits()
+	{
+		layout.show(this, "Credits");
+		parentTree.add("Credits");		
 	}
 	
 	public void flipBack()
