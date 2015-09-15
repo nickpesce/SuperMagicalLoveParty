@@ -1,20 +1,22 @@
 SUPER MAGICAL LOVE PARTY!
 by Nick Pesce
+
 This is a Java game created as a project for a CS class. It was created on the foundation that love is more powerful than violence and that violence is not needed in the world, or in video games for that matter.
 
 Features:
 	Levels:
-	4 types of terrain:
-		Solid: Normal, fully impassable terrain.
-		Platform: Can freely jump through and can squat to fall through
-		Trampoline: Bounce off and loose satisfaction
-		Ice: Slippery and solid
-	Full featured level editor
-		Make a custom background and upload it, or use the default
-		Choose the type of tile and draw the terrain with your mouse
-		Place up to 9 spawn points anywhere
-		Set custom settings just for that level
-	Download levels from friends and play them
+		4 types of terrain:
+			Solid: Normal, fully impassable terrain.
+			Platform: Can freely jump through and can squat to fall through
+			Trampoline: Bounce off and loose satisfaction
+			Ice: Slippery and solid
+		Full featured level editor
+			Make a custom background and upload it, or use the default
+			Choose the type of tile and draw the terrain with your mouse
+			Place up to 9 spawn points anywhere
+			Set custom settings just for that level
+		Download levels from friends and play them
+
 Characters:
 	Unicorn:
 		Abilities:
@@ -40,12 +42,14 @@ Characters:
 				Cabbage: Gently place the cabbage into the mouth of a nearby player, being sure that they swallow properly and do not choke
 			Long Press: Bunny Hop -- Jump along the shown path, landing in a reuniting jamboree of love. Special: Faster charge
 		Maximum Jumps: 1, but higher
+
 Powerups:
 	Invincible -- Any love given to the player will not give satisfaction to the giver
 	Speed -- Move faster
 	Special -- Abilities are enhanced
 	Strength -- Get more satisfaction from giving love
 	Apple -- Instantly receive 50% remaining satisfaction
+
 Online Multiplayer:
 	Host your own server
 	Up to 9 players
@@ -53,6 +57,7 @@ Online Multiplayer:
 	Constant games. When someone wins, another game starts
 	Ingame chat and console commands
 	IP bans
+
 Settings:
 	Fullscreen
 	Auto-Camera -- Screen view will follow the players and zoom
@@ -65,6 +70,9 @@ Settings:
 		Bind any key to any action
 		Edit/view controls in-game
 		Controls save from one session to the next
+
 Live updated scrolling message of the day
+
 Auto updating
+
 Has a website(http://smlp.ml)
