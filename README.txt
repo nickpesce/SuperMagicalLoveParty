@@ -1,3 +1,5 @@
+SUPER MAGICAL LOVE PARTY!
+by Nick Pesce
 This is a Java game created as a project for a CS class. It was created on the foundation that love is more powerful than violence and that violence is not needed in the world, or in video games for that matter.
 
 Features:
