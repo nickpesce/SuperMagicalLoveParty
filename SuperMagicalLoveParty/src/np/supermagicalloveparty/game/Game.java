@@ -22,7 +22,7 @@ public class Game implements GameLoopable{
 
 
 	public static final String NAME = "Super Magical Love Party!";
-	public static final String BASE_DIRECTORY = "Settings/";
+	public static final String BASE_DIRECTORY = System.getProperty("user.home")+"/.supermagicalloveparty/Settings/";
 	public static final String VERSION = "0.090";
 	public static final int DEFAULT_GRAVITY = 50;
 	/**
