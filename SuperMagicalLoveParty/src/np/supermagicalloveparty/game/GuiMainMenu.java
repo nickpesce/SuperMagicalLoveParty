@@ -258,7 +258,7 @@ public class GuiMainMenu extends Canvas implements MouseListener, MouseMotionLis
 		buttons.get(5).setLocation((int)((1920/2.0)-(50*WIDTH_MODIFIER)), (int)((1080/3.0)+120*Y_SPACING));		
 		//titleX = (1920/2)-(titleWidth/2);
 		//titleY = (1080/4)-(titleHeight/2);
-		titleMaxY = (1080/6) + 64;
+		titleMaxY = (1080/5) + 64;
 	}
 	
 
@@ -682,7 +682,7 @@ class Graphic
 	{
 		double multiplier = (type-10)/(11.9);
 		x = (1920/2) * multiplier;
-		y = (1080/6)+(type*20);
+		y = -(23*20) +(type*20);
 		vY = 0;
 	}
 	
@@ -728,7 +728,10 @@ class Graphic
 		if(type >= Graphic.S)
 		{
 			if(y + vY > container.titleMaxY)
+			{
+				y = container.titleMaxY;
 				vY = -20;
+			}
 		}
 		y += vY;
 		vY += aY;
