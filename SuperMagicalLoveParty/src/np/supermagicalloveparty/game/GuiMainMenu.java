@@ -300,7 +300,7 @@ public class GuiMainMenu extends Canvas implements MouseListener, MouseMotionLis
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
-		if(e.getY() > 20 && e.getY()<40)
+		if(e.getY() > 20*scaleH && e.getY()<40*scaleW)
 		{
 			if(updateAvailable)
 				updateGame();
@@ -587,7 +587,7 @@ public class GuiMainMenu extends Canvas implements MouseListener, MouseMotionLis
 			g2d.fillRect(0, 20, (int)(1920*updater.getRatioDone()), 20);
 			g2d.setColor(Color.WHITE);
 			g2d.drawString(updater.getStatus(), 0, 36);
-			g2d.drawString("Click here to see the change log2d.", 1920 - fontMetrics.stringWidth("Click here to see the change log2d."), 36);
+			g2d.drawString("Click here to see the change log.", 1920 - fontMetrics.stringWidth("Click here to see the change log."), 36);
 		}
 		buttons.renderAll(g2d, 1);
 		g2d.setColor(Color.WHITE);
