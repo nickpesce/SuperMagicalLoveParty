@@ -32,7 +32,7 @@ public class ServerGame extends Game
 	public Server server;
 	public ConcurrentHashMap<Integer, Entity> synchronizedEntities;
 	private TextUi textUi;
-	private boolean customLevel;
+	private boolean customLevel, updating;
 
 	public ServerGame(Server server, Frame frame, Mode mode) throws URISyntaxException
 	{
@@ -114,11 +114,26 @@ public class ServerGame extends Game
 		players[n] = player;
 		numPlayers++;
 		server.playerSpawn(player, c);
+		if(numPlayers == 1)
+		{
+			updating = true;
+			resume();
+		}
 	}
 	
 	public void removePlayer(int n)
 	{
 		super.removePlayer(n);
+		if(numPlayers == 0)
+		{
+			onGameEmpty();
+		}
+	}
+	
+	private void onGameEmpty()
+	{
+		updating = false;
+		reset();
 	}
 	
 	@Override
@@ -440,7 +455,7 @@ public class ServerGame extends Game
 	@Override
 	public boolean isUpdating()
 	{
-		return true;
+		return updating;
 	}
 	
 	public boolean hasCustomLevel()
