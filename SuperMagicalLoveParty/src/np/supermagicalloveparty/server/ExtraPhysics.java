@@ -6,10 +6,11 @@ public class ExtraPhysics extends Extra
 {
 	private static final long serialVersionUID = 7421199098844889831L;
 	int playerNumber;
+	byte direction;
 	double x, y, health, vX, vY, aX, aY;
 	//ArrayList<Integer> state;
 	
-	public ExtraPhysics(int playerNumber, double x, double y, double vX, double vY, double aX, double aY, double health)
+	public ExtraPhysics(int playerNumber, double x, double y, double vX, double vY, double aX, double aY, double health, byte direction)
 	{
 		this.playerNumber = playerNumber;
 		this.x = x;
@@ -19,6 +20,7 @@ public class ExtraPhysics extends Extra
 		this.aX = aX;
 		this.aY = aY;
 		this.health = health;
+		this.direction = direction;
 	}
 
 	
@@ -73,6 +75,10 @@ public class ExtraPhysics extends Extra
 		return aY;
 	}
 	
+	public byte getDirection()
+	{
+		return direction;
+	}
 	@Override
 	public String toString()
 	{

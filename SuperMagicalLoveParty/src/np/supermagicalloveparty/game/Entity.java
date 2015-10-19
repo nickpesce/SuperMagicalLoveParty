@@ -911,6 +911,16 @@ public abstract class Entity implements Drawable, Collidable, Updatable, Physics
 		this.height = height;
 		bounds.setHeight(height);
 	}
+	
+	public byte getDirection()
+	{
+		return direction;
+	}
+	
+	public void setDirection(byte direction)
+	{
+		this.direction = direction;
+	}
 
 	public double getAx() {
 		return aX;

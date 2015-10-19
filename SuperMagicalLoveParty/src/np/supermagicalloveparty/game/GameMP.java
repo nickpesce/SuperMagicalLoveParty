@@ -229,6 +229,7 @@ public class GameMP extends Game
 					return;
 				player.setX(ep.getX());
 				player.setY(ep.getY());
+				player.setDirection(ep.getDirection());
 				player.setPoints(ep.getHealth());
 				if(ep.getPlayerNumber()!=myPlayerNumber)
 				{

@@ -182,7 +182,7 @@ public class Server
 				{
 					Player p = game.getPlayers()[cc2.playerNumber];
 					if(p!=null)
-						cc1.send(new Packet(Packet.PHYSICS, new ExtraPhysics(cc2.playerNumber, p.getX(), p.getY() , p.getVx(), p.getVy(), p.getAx(), p.getAy(), p.getPoints())));
+						cc1.send(new Packet(Packet.PHYSICS, new ExtraPhysics(cc2.playerNumber, p.getX(), p.getY() , p.getVx(), p.getVy(), p.getAx(), p.getAy(), p.getPoints(), p.getDirection())));
 				}
 			}
 			for(Entry<Integer, Entity> e : game.synchronizedEntities.entrySet())
