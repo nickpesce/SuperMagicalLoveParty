@@ -210,6 +210,9 @@ public abstract class Player extends EntityLiving{
 
 	public void updateRunning()
 	{
+		//If multiplayer player, keys will be null. Server will update run.
+		if(keys == null)return;
+		
 		boolean left = game.input.pressedKeys.contains(keys.getKeyCode(InputHandler.LEFT));
 		boolean right = game.input.pressedKeys.contains(keys.getKeyCode(InputHandler.RIGHT));
 		if(left)
