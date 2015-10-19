@@ -77,10 +77,7 @@ public class GuiMainMenu extends Canvas implements MouseListener, MouseMotionLis
 			{
 				motdArray = getMotdArray();
 				updateAvailable = isUpdateAvailable();
-				motd = motdArray[(int) (Math.random()*motdArray.length)];
-				if(fontMetrics!=null)
-					motdWidth = fontMetrics.stringWidth(motd);
-				motdX = 1920 + motdWidth;
+				resetMotd();
 			}
 		}).start();
 		motdFont = new Font("ARIAL", Font.BOLD, 18);
@@ -300,7 +297,7 @@ public class GuiMainMenu extends Canvas implements MouseListener, MouseMotionLis
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
-		if(e.getY() > 20*scaleH && e.getY()<40*scaleW)
+		if(e.getY() > 20*scaleH && e.getY()<40*scaleH)
 		{
 			if(updateAvailable)
 				updateGame();
@@ -315,6 +312,10 @@ public class GuiMainMenu extends Canvas implements MouseListener, MouseMotionLis
 					e1.printStackTrace();
 				}
 			}
+		}
+		else if(e.getY() < 20*scaleH)
+		{
+			resetMotd();
 		}
 	}
 	
@@ -431,19 +432,9 @@ public class GuiMainMenu extends Canvas implements MouseListener, MouseMotionLis
 		trySpawn();
 		if(motdX < -motdWidth)
 		{
-			motd = motdArray[(int) (Math.random()*motdArray.length)];
-			if(fontMetrics != null)
-			{
-				motdWidth = fontMetrics.stringWidth(motd);
-				motdX = 1920;
-			}
-			else
-			{
-				motdX = 1920;
-				motdWidth = 0;
-			}
+			resetMotd();
 		}
-		motdX-=3;
+		motdX-=2;
 		
 		/*
 		if(titlePhase < 100 && this.isDisplayable())
@@ -457,6 +448,20 @@ public class GuiMainMenu extends Canvas implements MouseListener, MouseMotionLis
 		*/
 	}
 	
+	private void resetMotd()
+	{
+		motd = motdArray[(int) (Math.random()*motdArray.length)];
+		if(fontMetrics != null)
+		{
+			motdWidth = fontMetrics.stringWidth(motd);
+			motdX = 1920;
+		}
+		else
+		{
+			motdX = 1920;
+			motdWidth = 0;
+		}
+	}
 	@Override
 	public void fineUpdate(double interpolation)
 	{
