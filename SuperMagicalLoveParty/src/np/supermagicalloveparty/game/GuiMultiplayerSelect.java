@@ -1,12 +1,16 @@
 package np.supermagicalloveparty.game;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.net.Inet4Address;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 
 import javax.swing.JButton;
@@ -19,7 +23,7 @@ public class GuiMultiplayerSelect extends JPanel implements MouseListener, KeyLi
 	private static final long serialVersionUID = -5353940122387799266L;
 	PlayerSelection playerSelect;
 	GuiOutOfGame cards;
-	JButton bStart, bBack;
+	JButton bStart, bBack, bFriends;
 	JTextField tfIP, tfPort;
 	JLabel lIP, lPort;
 	int port;
@@ -54,11 +58,16 @@ public class GuiMultiplayerSelect extends JPanel implements MouseListener, KeyLi
 		tfPort = new JTextField("6969");
 		tfPort.addKeyListener(this);
 		tfPort.setPreferredSize(new Dimension(60,20));
+		bFriends = new JButton("I don't have any friends. HELP!");
+		bFriends.addMouseListener(this);
 		bStart = new JButton("Start");
 		bStart.addMouseListener(this);
 		bBack = new JButton("Back");
 		bBack.addMouseListener(this);
+
 		add(bBack);
+		add(bFriends);
+
 		add(lIP);
 		add(tfIP);
 		add(lPort);
@@ -77,6 +86,14 @@ public class GuiMultiplayerSelect extends JPanel implements MouseListener, KeyLi
 		}else if(arg0.getComponent().equals(bBack))
 		{
 			cards.flipBack();
+		}
+		else if(arg0.getComponent().equals(bFriends))
+		{
+			try {
+				Desktop.getDesktop().browse(new URI("http://smlp.ml/servers.php"));
+			} catch (IOException | URISyntaxException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
