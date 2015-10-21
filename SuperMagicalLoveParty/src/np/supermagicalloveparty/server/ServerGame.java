@@ -181,6 +181,19 @@ public class ServerGame extends Game
 	@Override
 	public void doCommand(String input)
 	{
+		input = "/"+input;
+		if(input.startsWith("/say"))
+		{
+			String[] args = input.split(" ");
+			if(args.length >= 2)
+			{
+				String message = StringHelper.combineStrings(args, 1);
+				sendMessage(message);
+			}else
+			{
+				consoleLog("You can't say nothing...", Color.RED, false);
+			}
+		}
 		if(input.equalsIgnoreCase("/debug"))
 		{
 			if(frame == null)
@@ -435,6 +448,7 @@ public class ServerGame extends Game
 		else if(input.equalsIgnoreCase("/help"))
 		{
 			super.doCommand(input);
+			consoleLog("say \"Message\"", Color.GREEN, false);
 			consoleLog("who (Alias: players, list)", Color.GREEN, false);
 			consoleLog("ban-ip \"Player\"", Color.GREEN, false);
 			consoleLog("kick \"Player\"", Color.GREEN, false);
