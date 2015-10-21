@@ -338,10 +338,13 @@ public abstract class Player extends EntityLiving{
 		super.update();
 		if(attackCd>0)
 			attackCd--;
+		/*Client reports physics*/
+		/*
 		if(game.multiplayer && ((GameMP)game).myPlayerNumber == number)
 		{
 			((GameMP)game).packetManager.send(new Packet(Packet.PHYSICS, new ExtraPhysics(number, x, y, vX, vY, aX, aY, points, direction)));
 		}
+		*/
 	}
 
 	@Override

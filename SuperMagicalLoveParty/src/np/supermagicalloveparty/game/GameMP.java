@@ -227,17 +227,24 @@ public class GameMP extends Game
 				player = players[ep.getPlayerNumber()];
 				if(player == null)
 					return;
-				player.setX(ep.getX());
-				player.setY(ep.getY());
+				double diffX = Math.abs(ep.getX() - player.getX());
+				double diffY = Math.abs(ep.getY() - player.getY());
+				//Only update locations if the server and client locations are off
+				//by the following
+				if(diffX + diffY > 1)
+				{
+					player.setX(ep.getX());
+					player.setY(ep.getY());
+				}
 				player.setDirection(ep.getDirection());
 				player.setPoints(ep.getHealth());
-				//if(ep.getPlayerNumber()!=myPlayerNumber)
-				//{
+				if(ep.getPlayerNumber()!=myPlayerNumber)
+				{
 					player.setVx(ep.getvX());
 					player.setVy(ep.getvY());
 					player.setAx(ep.getaX());
 					player.setAy(ep.getaY());
-				//}
+				}
 				break;
 			case Packet.ACTION:
 				ExtraAction ea = (ExtraAction)p.getInfo();
