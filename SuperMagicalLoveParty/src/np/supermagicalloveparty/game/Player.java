@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import np.supermagicalloveparty.server.ExtraAction;
+import np.supermagicalloveparty.server.ExtraPhysics;
 import np.supermagicalloveparty.server.Packet;
 import np.supermagicalloveparty.server.ServerGame;
 
@@ -337,6 +338,10 @@ public abstract class Player extends EntityLiving{
 		super.update();
 		if(attackCd>0)
 			attackCd--;
+		if(game.multiplayer && ((GameMP)game).myPlayerNumber == number)
+		{
+			((GameMP)game).packetManager.send(new Packet(Packet.PHYSICS, new ExtraPhysics(number, x, y, vX, vY, aX, aY, points, direction)));
+		}
 	}
 
 	@Override

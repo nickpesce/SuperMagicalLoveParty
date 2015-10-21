@@ -231,13 +231,13 @@ public class GameMP extends Game
 				player.setY(ep.getY());
 				player.setDirection(ep.getDirection());
 				player.setPoints(ep.getHealth());
-				if(ep.getPlayerNumber()!=myPlayerNumber)
-				{
+				//if(ep.getPlayerNumber()!=myPlayerNumber)
+				//{
 					player.setVx(ep.getvX());
 					player.setVy(ep.getvY());
 					player.setAx(ep.getaX());
 					player.setAy(ep.getaY());
-				}
+				//}
 				break;
 			case Packet.ACTION:
 				ExtraAction ea = (ExtraAction)p.getInfo();

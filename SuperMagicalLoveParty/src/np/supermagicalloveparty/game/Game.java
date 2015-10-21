@@ -112,13 +112,13 @@ public class Game implements GameLoopable{
 			canvas.addKeyListener(input);
 			canvas.addMouseListener(input);
 			canvas.addMouseMotionListener(input);
+			guiIngame = new GuiIngame(this);
+			guiControls = new GuiControls(this);
+			guiConsole = new GuiConsole(this);
+			guiGameOver = new GuiIngameGameOver(this);
 		}
 		//updateFrame();
-		guiIngame = new GuiIngame(this);
-		guiControls = new GuiControls(this);
-		guiConsole = new GuiConsole(this);
 		guiCountdown = new GuiIngameCountdown(this);
-		guiGameOver = new GuiIngameGameOver(this);
 		//****
 		//level.setGame(this);
 		if(characters!=null&&playerNames!=null)

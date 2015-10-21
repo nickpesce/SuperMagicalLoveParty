@@ -207,7 +207,7 @@ public class Server
 		{
 			for(ClientConnection cc2 : clients)
 			{
-				if(cc2.playerNumber != -1 && cc1.playerNumber != -1)// && cc1!=cc2)
+				if(cc1 != cc2 &&  cc2.playerNumber != -1 && cc1.playerNumber != -1)// && cc1!=cc2)
 				{
 					Player p = game.getPlayers()[cc2.playerNumber];
 					if(p!=null)
@@ -343,20 +343,19 @@ public class Server
 				}
 				break;
 			case Packet.PHYSICS:
-				/*
+				
 				ExtraPhysics ep = (ExtraPhysics)p.getInfo();
 				Player player = game.getPlayers()[ep.getPlayerNumber()];
 				if(player == null)
 					return;
 				player.setX(ep.getX());
 				player.setY(ep.getY());
-				player.setHealth(ep.getHealth());
-				player.setState(ep.getState());
+				player.setPoints(ep.getHealth());
 				player.setVx(ep.getvX());
 				player.setVy(ep.getvY());
 				player.setAx(ep.getaX());
 				player.setAy(ep.getaY());
-				*/
+				
 				break;
 			case Packet.ACTION:
 				ExtraAction ea = (ExtraAction)p.getInfo();
