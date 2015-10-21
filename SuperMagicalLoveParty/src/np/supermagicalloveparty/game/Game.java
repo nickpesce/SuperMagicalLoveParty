@@ -117,7 +117,6 @@ public class Game implements GameLoopable{
 			guiConsole = new GuiConsole(this);
 			guiGameOver = new GuiIngameGameOver(this);
 		}
-		//updateFrame();
 		guiCountdown = new GuiIngameCountdown(this);
 		//****
 		//level.setGame(this);
@@ -612,10 +611,9 @@ public class Game implements GameLoopable{
 		else if(input.equalsIgnoreCase("/help"))
 		{
 			consoleLog("-----help-----", Color.GREEN, false);
-			consoleLog("quit...........Exit the game", Color.GREEN, false);
-			if(checkSpecialAllowed() == 1)
-				consoleLog("satan......Toggle game mode. Not for Donlon use.", Color.GREEN, false);
-			consoleLog("--------------", Color.GREEN, false);
+			consoleLog("quit (Alias: stop)", Color.GREEN, false);
+			consoleLog("debug", Color.GREEN, false);
+
 		}else
 		{
 			sendMessage(input);

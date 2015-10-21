@@ -380,7 +380,7 @@ public class ServerGame extends Game
 				consoleLog(name + " is now listening to Streamine at full volume!", Color.GREEN, false);
 			}
 		}
-		else if(input.equalsIgnoreCase("/ip") || input.equalsIgnoreCase("/iip"))
+		else if(input.equalsIgnoreCase("/iip"))
 		{
 			new Thread(new Runnable(){
 				@Override
@@ -390,10 +390,15 @@ public class ServerGame extends Game
 					try
 					{
 						ip = Inet4Address.getLocalHost().getHostAddress();
-						ServerGame.this.consoleLog("Internal server IP(LAN only) copied to clipboard!", Color.GREEN, false);
+						if(frame != null)
+						{
+							ServerGame.this.consoleLog("Internal server IP(LAN only) copied to clipboard!", Color.GREEN, false);
+							Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+							clipboard.setContents(new StringSelection(ip), null);
+						}else
+							ServerGame.this.consoleLog("Internal server IP(LAN only):", Color.GREEN, false);
 						ServerGame.this.consoleLog(ip+":"+server.getPort(), Color.BLACK, false);
-						Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-						clipboard.setContents(new StringSelection(ip), null);
+
 					}
 					catch (UnknownHostException e1)
 					{
@@ -402,7 +407,7 @@ public class ServerGame extends Game
 					}
 				}
 			}).start();
-		}else if(input.equalsIgnoreCase("/eip"))
+		}else if(input.equalsIgnoreCase("/ip") || input.equalsIgnoreCase("/eip"))
 		{
 			new Thread(new Runnable(){
 				@Override
@@ -418,12 +423,28 @@ public class ServerGame extends Game
 							clipboard.setContents(new StringSelection(ip), null);
 							ServerGame.this.consoleLog("External server IP copied to clipboard!", Color.GREEN, false);
 						}
+						else
+							ServerGame.this.consoleLog("External server IP:", Color.GREEN, false);
 						ServerGame.this.consoleLog(ip+":"+server.getPort(), Color.BLACK, false);
 					} catch (IOException e) {
 						ServerGame.this.consoleLog("Could not get external IP. Are you connected to the internet?", Color.RED, false);
 					}
 				}
 			}).start();
+		}
+		else if(input.equalsIgnoreCase("/help"))
+		{
+			super.doCommand(input);
+			consoleLog("who (Alias: players, list)", Color.GREEN, false);
+			consoleLog("ban-ip \"Player\"", Color.GREEN, false);
+			consoleLog("kick \"Player\"", Color.GREEN, false);
+			consoleLog("respawn \"Player\"", Color.GREEN, false);
+			consoleLog("streamline \"Player\"", Color.GREEN, false);
+			consoleLog("pardon \"Player\"", Color.GREEN, false);
+			consoleLog("pardon-all", Color.GREEN, false);
+			consoleLog("give {speed|special|invincible|strength|health} \"Player\"", Color.GREEN, false);
+			consoleLog("iip", Color.GREEN, false);
+			consoleLog("eip (Alias: ip)", Color.GREEN, false);
 		}
 		else
 			super.doCommand(input);
