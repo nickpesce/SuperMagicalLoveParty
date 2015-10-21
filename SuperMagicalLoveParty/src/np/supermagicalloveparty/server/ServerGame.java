@@ -53,9 +53,12 @@ public class ServerGame extends Game
 	public void init()
 	{
 		super.init();
-		textUi = new TextUi(this);
-		frame.remove(canvas);
-		frame.add(textUi);
+		if(frame != null)
+		{
+			textUi = new TextUi(this);
+			frame.remove(canvas);
+			frame.add(textUi);
+		}
 		resume();
 //		state = State.LOADING;
 //		strings = new Strings(this);
@@ -117,6 +120,7 @@ public class ServerGame extends Game
 		if(numPlayers == 1)
 		{
 			updating = true;
+			gameLoop.startGame(settings.getSpeed());
 			resume();
 		}
 	}
@@ -133,6 +137,7 @@ public class ServerGame extends Game
 	private void onGameEmpty()
 	{
 		updating = false;
+		gameLoop.stop();
 		reset();
 	}
 	
@@ -178,6 +183,11 @@ public class ServerGame extends Game
 	{
 		if(input.equalsIgnoreCase("/debug"))
 		{
+			if(frame == null)
+			{
+				consoleLog("You can not debug while in this mode!", Color.red, true);
+				return;
+			}
 			if(!debug)
 			{
 				frame.remove(textUi);
@@ -286,12 +296,8 @@ public class ServerGame extends Game
 					consoleLog("ERROR: " + name + " could not be found.", Color.RED, false);
 					return;
 				}
-				players[n].setPoints(points);
-				if(players[n].getPoints() >= players[n].getMaxPoints())
-					players[n].onPointsFull();
-				else if(players[n].getPoints() <= 0)
-					players[n].onPointsEmpty();
 				consoleLog(name + " now has " + points + " points!", Color.GREEN, false);
+				players[n].setPoints(points);
 			}
 		}
 		else if(input.equalsIgnoreCase("/pardon-all"))
@@ -406,10 +412,13 @@ public class ServerGame extends Game
 			        try {
 						BufferedReader bufferedreader = new BufferedReader(new InputStreamReader((new URL("http://wtfismyip.com/text")).openStream()));
 						ip = bufferedreader.readLine();
-						ServerGame.this.consoleLog("External server IP copied to clipboard!", Color.GREEN, false);
+						if(frame != null)
+						{
+							Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+							clipboard.setContents(new StringSelection(ip), null);
+							ServerGame.this.consoleLog("External server IP copied to clipboard!", Color.GREEN, false);
+						}
 						ServerGame.this.consoleLog(ip+":"+server.getPort(), Color.BLACK, false);
-						Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-						clipboard.setContents(new StringSelection(ip), null);
 					} catch (IOException e) {
 						ServerGame.this.consoleLog("Could not get external IP. Are you connected to the internet?", Color.RED, false);
 					}
@@ -425,8 +434,10 @@ public class ServerGame extends Game
 	{
 		if(debug)
 			super.consoleLog(s, color, playerMessage);
-		else
+		else if(frame != null)
 			textUi.log(s);
+		else
+			System.out.println(s);
 	}
 	
 	@Override
@@ -442,6 +453,7 @@ public class ServerGame extends Game
 			pause();
 			reset();
 			guiCountdown.start(true);
+			//TODO XXX Console server second game not starting.
 		}
 	}
 	
@@ -455,7 +467,7 @@ public class ServerGame extends Game
 	@Override
 	public boolean isUpdating()
 	{
-		return updating;
+		return updating && super.isUpdating();
 	}
 	
 	public boolean hasCustomLevel()

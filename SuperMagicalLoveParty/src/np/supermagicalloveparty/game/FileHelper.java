@@ -508,4 +508,32 @@ public class FileHelper {
 		}
 		return file;
 	}
+
+	public static void createDefaultLevel() 
+	{
+		try {
+			new File(Game.BASE_DIRECTORY + "Levels/Default~160x90").mkdirs();
+			File file = new File(Game.BASE_DIRECTORY + "Levels/Default~160x90/Terrain.txt");
+			file.createNewFile();
+			FileHelper.writeDefaultFile("/Terrain.txt", file.getPath());
+			file = new File(Game.BASE_DIRECTORY + "Levels/Default~160x90/Entities.txt");
+			file.createNewFile();
+			FileHelper.writeDefaultFile("/Entities.txt", file.getPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static Level loadDefaultLevel()
+	{
+		return loadLevelFromDirectory("Default", 160, 90);
+	}
+	public static Level loadLevelFromDirectory(String name, int width, int height)
+	{
+		return new Level(name, width, height, 
+				FileHelper.loadTerrain(name, width, height), 
+				FileHelper.loadEntities(name, width, height), 
+				FileHelper.loadImage(name, width, height, false),
+				FileHelper.loadImage(name, width, height, true));
+	}
 }

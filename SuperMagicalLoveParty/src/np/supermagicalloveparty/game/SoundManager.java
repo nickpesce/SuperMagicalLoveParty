@@ -121,8 +121,10 @@ public class SoundManager {
 	public void resumeMusic()
 	{
 		if(music!=null && music.isOpen())
+		{
 			music.loop(Clip.LOOP_CONTINUOUSLY);
-		setVolume(music, -((50-(musicVol/2.0f))));
+			setVolume(music, -((50-(musicVol/2.0f))));
+		}
 	}
 	
 	public static void setVolume(Clip clip, float level)

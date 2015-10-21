@@ -18,9 +18,8 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Map.Entry;
+import java.util.Scanner;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import javax.swing.JTextField;
 
 import np.supermagicalloveparty.game.Entity;
 import np.supermagicalloveparty.game.FileHelper;
@@ -40,10 +39,12 @@ public class Server
 	private ArrayList<String> bannedIps;
 	private int maxPlayers;
 	private int port;
+	private Frame frame;
 	
 	public Server(Frame frame, int port, Level level, int maxPlayers, Mode mode)
 	{
 		bannedIps = new ArrayList<String>();
+		this.frame = frame;
 		this.maxPlayers = maxPlayers;
 		FileHelper.readArrayListToFile(bannedIps, "Server/", "banned-ips.txt");
 		running = true;
@@ -61,8 +62,31 @@ public class Server
 		{
 			e1.printStackTrace();
 		}
-		frame.setSize(698, 422);
-		frame.setLocationRelativeTo(null);
+		if(frame!=null)
+		{
+			frame.setSize(698, 422);
+			frame.setLocationRelativeTo(null);
+		}
+		else
+		{
+			new Thread(new Runnable(){
+				@Override
+				public void run() {
+					
+					BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); 					
+					try{
+						while(running)
+						{
+							game.doCommand(in.readLine());
+						}
+						in.close();
+					}catch(IOException e)
+					{
+						e.printStackTrace();
+					}
+				}
+			}).start();
+		}
 		clients = new CopyOnWriteArrayList<ClientConnection>();
 		try
 		{
@@ -124,9 +148,14 @@ public class Server
 		game.init();
 		listenForConnection();
 		game.consoleLog("[INFO] Server started!", Color.WHITE, false);
-		copyIpToClipboard();
+		if(frame != null)
+			copyIpToClipboard();
 	}
 	
+	/**
+	 * PRECONDITION: The frame is visible/frame != null
+	 * Finds the most relevant IP address for the server and copies it to the clipboard
+	 */
 	public void copyIpToClipboard()
 	{
 		new Thread(new Runnable(){
@@ -476,11 +505,11 @@ class ClientConnection
 						if(playerNumber != -1 && server.getGame().getPlayers()[playerNumber] != null)
 						{
 							server.removePlayer(playerNumber, ExtraDisconnect.ERROR);
-							System.out.println("Removed player " + playerNumber + " due to packet receive error.");
+							System.out.println("Removed player " + playerNumber + " due to packet receive error. Probably closed client.");
 						}
 						else
 							server.removeClient(ClientConnection.this, ExtraDisconnect.ERROR);
-						e.printStackTrace();
+						//e.printStackTrace();
 					}
 				}while(listening && !ClientConnection.this.connection.isClosed());
 			}
@@ -499,10 +528,10 @@ class ClientConnection
 			if(playerNumber != -1 && server.getGame().getPlayers()[playerNumber] != null)
 			{
 				server.removePlayer(playerNumber, ExtraDisconnect.ERROR);
-				System.out.println("Removed player " + playerNumber + " due to packet send error.");
+				System.out.println("Removed player " + playerNumber + " due to packet send error. Probably closed client.");
 			}else
 				server.removeClient(ClientConnection.this, ExtraDisconnect.ERROR);
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	

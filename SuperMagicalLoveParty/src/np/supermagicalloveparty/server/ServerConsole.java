@@ -20,7 +20,6 @@ public class ServerConsole extends JPanel
 	public void paint(Graphics g)
 	{
 		super.paint(g);
-		System.out.println(g);
 		g.setColor(Color.GRAY);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g.setColor(Color.WHITE);

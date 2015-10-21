@@ -100,17 +100,19 @@ public class Game implements GameLoopable{
 		activeGui = Gui.NONE;
 		camera = new Camera(this);
 		canvas = new GameCanvas(this);
-		frame.setGameCanvas(canvas);
 		textures = new TextureManager(this);
 		textures.init();
 		strings = new Strings(this);
 		input = new InputHandler(this);
-		canvas.createBufferStrategy(2);
-		doubleBuffer = canvas.getBufferStrategy();
-		canvas.requestFocusInWindow();
-		canvas.addKeyListener(input);
-		canvas.addMouseListener(input);
-		canvas.addMouseMotionListener(input);
+		if(frame != null){
+			frame.setGameCanvas(canvas);
+			canvas.createBufferStrategy(2);
+			doubleBuffer = canvas.getBufferStrategy();
+			canvas.requestFocusInWindow();
+			canvas.addKeyListener(input);
+			canvas.addMouseListener(input);
+			canvas.addMouseMotionListener(input);
+		}
 		//updateFrame();
 		guiIngame = new GuiIngame(this);
 		guiControls = new GuiControls(this);
@@ -121,7 +123,7 @@ public class Game implements GameLoopable{
 		//level.setGame(this);
 		if(characters!=null&&playerNames!=null)
 			addPlayers(characters, playerNames);
-		if(settings.isFullscreenMode())
+		if(frame != null && settings.isFullscreenMode())
 			frame.setFullScreen(true);
 		if(settings.getPowerups()>0)
 			powerupGenerator = new PowerupGenerator(this);
@@ -129,10 +131,10 @@ public class Game implements GameLoopable{
 		soundManager.setMusicVolume(settings.getMusicVolume());
 		soundManager.setSfxVolume(settings.getSfxVolume());
 		gameLoop = new GameLoop(this);
-		gameLoop.startGame(settings.getSpeed());
 		state = State.INITILIZED;
 		if(!(this instanceof ServerGame))
 		{
+			gameLoop.startGame(settings.getSpeed());
 			soundManager.setMusic(SoundManager.MUSIC_LOOP);
 			if(!multiplayer)
 			{
@@ -149,11 +151,14 @@ public class Game implements GameLoopable{
 	{
 		if(state.equals(Game.State.ANIMATING))
 			progressAnimation();
+		
 		if(activeGui.equals(Gui.COUNTDOWN))
 			guiCountdown.update();
+		if(guiConsole != null)
+			guiConsole.updateChatTimes();
+
 		updateUpdatables();
 		updatePhysicsables();
-		guiConsole.updateChatTimes();
 		//updateCollidables();
 	}
 	
@@ -232,20 +237,24 @@ public class Game implements GameLoopable{
 		if(Math.abs((center.y - winner.getY()))<.5 && Math.abs(center.x - winner.getX())<.5)
 		{
 			ending = true;
-			if(!specialMode)
+
+			if(frame != null)
 			{
-				for(double x = center.getX()-20; x < center.getX()+20; x+=.1)
+				if(!specialMode)
 				{
-					Particle.spawnMany(Game.this, x + (winner.getWidth()/2.0), -Math.sqrt(400-(Math.pow(x-center.getX(), 2))) + winner.getY() + winner.getHeight(), 10, Particle.Type.RAINBOW, false);
+					for(double x = center.getX()-20; x < center.getX()+20; x+=.1)
+					{
+						Particle.spawnMany(Game.this, x + (winner.getWidth()/2.0), -Math.sqrt(400-(Math.pow(x-center.getX(), 2))) + winner.getY() + winner.getHeight(), 10, Particle.Type.RAINBOW, false);
+					}
 				}
+				winner.visible=false;
+				for(double x = center.getX(); x < center.getX() + winner.getWidth(); x+=.3)
+				{
+					for(double y = center.getY(); y < center.getY() + winner.getWidth(); y+=.3)
+						Particle.spawnMany(Game.this, x, y, 4, specialMode? Particle.Type.RED_GOO : Particle.Type.FAIRY_DUST);
+				}
+				soundManager.playSound(SoundManager.MENU_SPARKLE);
 			}
-			winner.visible=false;
-			for(double x = center.getX(); x < center.getX() + winner.getWidth(); x+=.3)
-			{
-				for(double y = center.getY(); y < center.getY() + winner.getWidth(); y+=.3)
-					Particle.spawnMany(Game.this, x, y, 4, specialMode? Particle.Type.RED_GOO : Particle.Type.FAIRY_DUST);
-			}
-			soundManager.playSound(SoundManager.MENU_SPARKLE);
 			if(!multiplayer)
 				endGameAfterTime(2000);
 		}
@@ -330,7 +339,8 @@ public class Game implements GameLoopable{
 		players[p.getNumber()] = p;
 		numPlayers++;
 		input.addPlayer(p, p.getKeys());
-		guiControls.addPlayer(p, multiplayer);
+		if(guiControls != null)
+			guiControls.addPlayer(p, multiplayer);
 	}
 	
 	public void removePlayer(int n)
@@ -462,13 +472,17 @@ public class Game implements GameLoopable{
 		state = State.CLOSING;
 		if(gameLoop!=null)
 			gameLoop.stop();
-		if(specialMode)
-			frame.setTitle(Game.NAME);
-		if(settings.isFullscreenMode())
-			frame.setFullScreen(false);
+		if(frame != null)
+		{
+			if(specialMode)
+				frame.setTitle(Game.NAME);
+			if(settings.isFullscreenMode())
+				frame.setFullScreen(false);
+			GuiOutOfGame menu = new GuiOutOfGame(frame);
+			frame.setGui(menu);
+		}
 		specialMode = false;
-		GuiOutOfGame menu = new GuiOutOfGame(frame);
-		frame.setGui(menu);
+
 		if(soundManager != null)
 			soundManager.pauseMusic();
 	}
@@ -480,7 +494,8 @@ public class Game implements GameLoopable{
 	public boolean toggleMode()
 	{
 		specialMode = !specialMode;
-		frame.setTitle(specialMode? "Satanic Blood Orgy": Game.NAME);
+		if(frame != null)
+			frame.setTitle(specialMode? "Satanic Blood Orgy": Game.NAME);
 		soundManager.setMusic(specialMode? SoundManager.MUSIC2_LOOP:SoundManager.MUSIC_LOOP);
 		soundManager.resumeMusic();
 		return specialMode;
@@ -493,18 +508,19 @@ public class Game implements GameLoopable{
 	public void gameOver(Player p, boolean instant)
 	{
 		winner = p;
-		if(p!=null)
-		{
-			if(specialMode)
-				consoleLog("[WINNER] Horay! " + p + " was filled with so much Satanic evil that he exploded in a torrent of blood!", Color.CYAN, true);
-			else
-				consoleLog("[WINNER] Horay! " + p + " was filled with so much satisfaction that he burst into a rainbow and ascended to Nirvana!", Color.CYAN, true);
-		}
 		if(!instant)
 		{
+			if(p!=null)
+			{
+				if(specialMode)
+					consoleLog("[WINNER] Horay! " + p + " was filled with so much Satanic evil that he exploded in a torrent of blood!", Color.CYAN, true);
+				else
+					consoleLog("[WINNER] Horay! " + p + " was filled with so much satisfaction that he burst into a rainbow and ascended to Nirvana!", Color.CYAN, true);
+			}
 			winner.setNoClip(true);
 			state = State.ANIMATING;
-			canvas.updateScale(frame);
+			if(frame != null)
+				canvas.updateScale(frame);
 			winner.collidedLeft = winner.collidedRight = winner.onGround = false;
 			winner.stopRunning();
 			winner.setAy(0);

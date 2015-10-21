@@ -30,7 +30,7 @@ public class GuiConsole
 		clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		chat = new CopyOnWriteArrayList<Pair<Pair<String, Color>, Long>>();
 		input = "";
-		if(game instanceof ServerGame)
+		if(game instanceof ServerGame && game.frame != null)
 			width = game.frame.getWidth();
 		width = game.canvas.getCanvasWidth()/2;
 		log = new CopyOnWriteArrayList<Pair<String, Color>>();

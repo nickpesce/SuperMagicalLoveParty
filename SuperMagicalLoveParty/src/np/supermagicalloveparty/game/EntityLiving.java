@@ -370,6 +370,10 @@ public abstract class EntityLiving extends Entity
 		{
 			onPointsEmpty();
 		}
+		else if(this.points >= maxPoints)
+		{
+			onPointsFull();
+		}
 	}
 	
 	public double getPoints()

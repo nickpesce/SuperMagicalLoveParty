@@ -25,7 +25,7 @@ public class GuiIngameCountdown
 		stage = 0;
 		string = "3";
 		nextTime = System.currentTimeMillis()+1000;
-		game.soundManager.playSound(SoundManager.POP);
+		Game.soundManager.playSound(SoundManager.POP);
 		game.state = Game.State.COUNTDOWN;
 		game.activeGui = Game.Gui.COUNTDOWN;
 		update();

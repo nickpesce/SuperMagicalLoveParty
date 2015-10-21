@@ -41,30 +41,17 @@ public class GuiLevelSelectBox extends JComboBox<String> implements ItemListener
 		});	
 		if(folders.length==0)
 		{
-			try
-			{
-				new File(Game.BASE_DIRECTORY + "Levels/Default~160x90").mkdirs();
-				File file = new File(Game.BASE_DIRECTORY + "Levels/Default~160x90/Terrain.txt");
-				file.createNewFile();
-				FileHelper.writeDefaultFile("/Terrain.txt", file.getPath());
-				file = new File(Game.BASE_DIRECTORY + "Levels/Default~160x90/Entities.txt");
-				file.createNewFile();
-				FileHelper.writeDefaultFile("/Entities.txt", file.getPath());
-				folders = levelDirectory.list(new FilenameFilter(){
-					@Override
-					public boolean accept(File dir, String name)
-					{
-						if(name.contains("."))
-							return false;
-						return true;
-					}
-					
-				});
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
+			FileHelper.createDefaultLevel();
+			folders = levelDirectory.list(new FilenameFilter(){
+				@Override
+				public boolean accept(File dir, String name)
+				{
+					if(name.contains("."))
+						return false;
+					return true;
+				}
+				
+			});
 		}
 		addItemListener(this);
 
@@ -86,11 +73,7 @@ public class GuiLevelSelectBox extends JComboBox<String> implements ItemListener
 		for(String n : levelStrings)
 			addItem(n);
 		reset(index);
-		parent.setLevel(new Level(levelStrings[selectedIndex], levelWidths[selectedIndex], levelHeights[selectedIndex], 
-				FileHelper.loadTerrain(levelStrings[selectedIndex], levelWidths[selectedIndex], levelHeights[selectedIndex]), 
-				FileHelper.loadEntities(levelStrings[selectedIndex], levelWidths[selectedIndex], levelHeights[selectedIndex]), 
-				FileHelper.loadImage(levelStrings[selectedIndex], levelWidths[selectedIndex], levelHeights[selectedIndex], false),
-				FileHelper.loadImage(levelStrings[selectedIndex], levelWidths[selectedIndex], levelHeights[selectedIndex], true)));
+		parent.setLevel(FileHelper.loadLevelFromDirectory(levelStrings[selectedIndex], levelWidths[selectedIndex], levelHeights[selectedIndex]));
 		revalidate();
 		repaint();
 	}
@@ -161,12 +144,7 @@ public class GuiLevelSelectBox extends JComboBox<String> implements ItemListener
 			else
 			{
 				selectedIndex = getSelectedIndex();
-				parent.setLevel(new Level(levelStrings[selectedIndex], levelWidths[selectedIndex], levelHeights[selectedIndex], 
-						FileHelper.loadTerrain(levelStrings[selectedIndex], levelWidths[selectedIndex], levelHeights[selectedIndex]), 
-						FileHelper.loadEntities(levelStrings[selectedIndex], levelWidths[selectedIndex], levelHeights[selectedIndex]), 
-						FileHelper.loadImage(levelStrings[selectedIndex], levelWidths[selectedIndex], levelHeights[selectedIndex], false),
-						FileHelper.loadImage(levelStrings[selectedIndex], levelWidths[selectedIndex], levelHeights[selectedIndex], true)));
-
+				parent.setLevel(FileHelper.loadLevelFromDirectory(levelStrings[selectedIndex], levelWidths[selectedIndex], levelHeights[selectedIndex]));
 			}
 	}
 }
