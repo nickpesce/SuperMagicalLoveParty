@@ -81,4 +81,4 @@ Technical Info:
 	Only libraries that were published by oracle were used.
 	Created as a learning project.
 	Worked on over the course of one year.
-	Admittedly, some of the code is pretty attrocious. (Six month rule at work :D(http://blog.marcomonteiro.net/post/the-six-months-rule))
+	Admittedly, some of the code is pretty attrocious. (Six month rule at work :D( http://blog.marcomonteiro.net/post/the-six-months-rule ))
