@@ -159,6 +159,8 @@ This is a Java game created as a project for a CS class. It was created on the f
 			<hr>
 			<li>Has a <a href="http://smlp.pesce.host">website</a></li>
 			<hr>
+			<li>Has a pretty main menu <details><summary>gif</summary><img src="/Screens/Menu.gif"/></details></li>
+			<hr>
 		</ul>
 	
 ##Technical Info
