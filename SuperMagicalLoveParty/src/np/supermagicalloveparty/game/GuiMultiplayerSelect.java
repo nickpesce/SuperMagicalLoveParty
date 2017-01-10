@@ -90,7 +90,7 @@ public class GuiMultiplayerSelect extends JPanel implements MouseListener, KeyLi
 		else if(arg0.getComponent().equals(bFriends))
 		{
 			try {
-				Desktop.getDesktop().browse(new URI("http://smlp.ml/servers.php"));
+				Desktop.getDesktop().browse(new URI("http://smlp.pesce.host/servers.html"));
 			} catch (IOException | URISyntaxException e) {
 				e.printStackTrace();
 			}
