@@ -32,6 +32,15 @@ This is a Java game created as a project for a CS class. It was created on the f
 			</li>
 			<hr>
 			<li>
+				Combat:
+				<ul>
+				<li>Earn satisfaction by giving love to other players</li>
+				<li>The first player to fill their satisfaction bar wins.</li>
+				<li>Evade other's attempts to give you love. <details><summary>gif</summary><img src="/Screens/Evade.gif"/></details></li>
+				</ul>
+			</li>
+			<hr>
+			<li>
 				Characters:
 				<ul>
 					<li>
@@ -40,8 +49,8 @@ This is a Java game created as a project for a CS class. It was created on the f
 							<li>
 								Abilities:
 								<ul>
-									<li>Short Press: Fairy Dust Sprinkle -- Short range burst of love straight out of the unicorn horn</li>
-									<li>Long Press: Blow a Kiss -- Shoot a love packed heart at a companion. Gives more satisfaction the longer it was charged and the farther it travels. Special: Blow three kisses at once</li>
+									<li>Short Press: Fairy Dust Sprinkle -- Short range burst of love straight out of the unicorn horn<details><summary>gif</summary><img src="/Screens/UnicornMelee.gif"/></details></li>
+									<li>Long Press: Blow a Kiss -- Shoot a love packed heart at a companion. Gives more satisfaction the longer it was charged and the farther it travels. Special: Blow three kisses at once<details><summary>gif</summary><img src="/Screens/UnicornRanged.gif"/></details></li>
 								</ul>
 							</li>
 							<li>Maximum Jumps: 2</li>
@@ -53,12 +62,12 @@ This is a Java game created as a project for a CS class. It was created on the f
 							<li>
 								Abilities:
 								<ul>
-									<li>Short Press: Bear Hug -- Embrace all nearby companions and feel satisfied. Special: Bigger range and more love</li>
-									<li>Long Press: Bear Hug with extra strength *temporary*</li>
+									<li>Short Press: Bear Hug -- Embrace all nearby companions and feel satisfied. Special: Bigger range and more love<details><summary>gif</summary><img src="/Screens/PandaHug.gif"/></details></li>
+									<li>Long Press: Bear Hug with extra strength *temporary*<details><summary>gif</summary><img src="/Screens/PandaBigHug.gif"/></details></li>
 								</ul>
 							</li>
 							<li>Maximum Jumps: 1</li>
-							<li>If the panda lands on solid ground while squatting, it will release a burst of love to all nearby players</li>
+							<li>If the panda lands on solid ground while squatting, it will release a burst of love to all nearby players.<details><summary>gif</summary><img src="/Screens/PandaJump.gif"/></details></li>
 						</ul>
 					</li>
 					<li>
@@ -67,8 +76,8 @@ This is a Java game created as a project for a CS class. It was created on the f
 							<li>
 								Abilities:
 								<ul>
-									<li>Short Press: Feel the Rainbow -- Gives a taste of the rainbow to nearby companions, giving satisfaction.</li>
-									<li>Long Press: Egg Drop/Eggsplosion of Love -- Drop an egg of love on the players below. On impact, it eggsplodes in a ball of love. Special: Bigger egg and eggsplosion</li>
+									<li>Short Press: Feel the Rainbow -- Gives a taste of the rainbow to nearby companions, giving satisfaction.<details><summary>gif</summary><img src="/Screens/BirdShort.gif"/></details></li>
+									<li>Long Press: Egg Drop/Eggsplosion of Love -- Drop an egg of love on the players below. On impact, it eggsplodes in a ball of love. Special: Bigger egg and eggsplosion. <details><summary>gif</summary><img src="/Screens/BirdLong.gif"/></details></li>
 								</ul>
 							</li>
 							<li>Maximum Jumps: ∞</li>
@@ -82,12 +91,12 @@ This is a Java game created as a project for a CS class. It was created on the f
 								<ul>
 									<li>Short Press: Veggie Grab/Feed -- If the Bunny isn't holding anything and is on solid ground, it will pull a random vegetable out of the ground. If it is, it will use the vegetable to feed someone. Special: Bigger veggies
 										<ul>
-											<li>Carrot: Throw the carrot in a straight line directly into a hungry player's mouth</li>
-											<li>Turnip: Lob the big turip into the mouth of a player, and stun them as they swallow</li>
-											<li>Cabbage: Gently place the cabbage into the mouth of a nearby player, being sure that they swallow properly and do not choke</li>
+											<li>Carrot: Throw the carrot in a straight line directly into a hungry player's mouth<details><summary>gif</summary><img src="/Screens/BunnyCarrot.gif"/></details></li>
+											<li>Turnip: Lob the big turip into the mouth of a player, and stun them as they swallow<details><summary>gif</summary><img src="/Screens/BunnyTurnip.gif"/></details></li>
+											<li>Cabbage: Gently place the cabbage into the mouth of a nearby player, being sure that they swallow properly and do not choke. <details><summary>gif</summary><img src="/Screens/BunnyCabbage.gif"/></details></li>
 										</ul>
 									</li>
-									<li>Long Press: Bunny Hop -- Jump along the shown path, landing in a reuniting jamboree of love. Special: Faster charge</li>
+									<li>Long Press: Bunny Hop -- Jump along the shown path, landing in a reuniting jamboree of love. Special: Faster charge. <details><summary>gif</summary><img src="/Screens/BunnyJump.gif"/></details></li>
 								</ul>
 							</li>
 							<li>Maximum Jumps: 1, but higher</li>
