@@ -75,7 +75,7 @@ Features:
 
 	Auto updating
 
-	Has a website(http://smlp.pesces.host)
+	Has a website(http://smlp.pesce.host)
 	
 Technical Info:
 	Only libraries that were published by oracle were used.
