@@ -167,5 +167,5 @@ This is a Java game created as a project for a CS class. It was created on the f
 Only libraries that were published by oracle were used.<br/>
 Created as a learning project.<br/>
 Worked on over the course of one year.<br/>
-Admittedly, some of the code is pretty attrocious. ([Six month rule](http://blog.marcomonteiro.net/post/the-six-months-rule) at work :D)<br/>
-Fell free to ask me more about it in person. Maybe in like an interview or something ;)
+Admittedly, some of the code is pretty attrocious ([Six month rule](http://blog.marcomonteiro.net/post/the-six-months-rule) at work :D).<br/>
+Feel free to ask me more about it in person. Maybe in like an interview or something ;)
