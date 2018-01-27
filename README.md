@@ -1,7 +1,7 @@
 #SUPER MAGICAL LOVE PARTY!
 by Nick Pesce
 
-##[Download](http://smlp.pesce.host/SuperMagicalLoveParty.jar)
+##[Download](http://smlp.pesce.me/SuperMagicalLoveParty.jar)
 ##Summary
 This is a Java game created as a project for a CS class. It was created on the foundation that love is more powerful than violence and that violence is not needed in video games, or at all for that matter.
 
@@ -108,11 +108,11 @@ This is a Java game created as a project for a CS class. It was created on the f
 			<li>
 				Powerups:
 				<ul>
-					<li>Invincible<img src="http://smlp.pesce.host/resources/Sun.png" width="16" height="16"> -- Any love given to the player will not give satisfaction to the giver</li>
-					<li>Speed<img src="http://smlp.pesce.host/resources/Boot.png" width="16" height="16"> -- Move faster</li>
-					<li>Special<img src="http://smlp.pesce.host/resources/Cupcake.png" width="16" height="16"> -- Abilities are enhanced</li>
-					<li>Strength<img src="http://smlp.pesce.host/resources/Potion.png" width="16" height="16"> -- Get more satisfaction from giving love</li>
-					<li>Apple<img src="http://smlp.pesce.host/resources/Apple.png" width="16" height="16"> -- Instantly receive 50% remaining satisfaction</li>
+					<li>Invincible<img src="http://smlp.pesce.me/resources/Sun.png" width="16" height="16"> -- Any love given to the player will not give satisfaction to the giver</li>
+					<li>Speed<img src="http://smlp.pesce.me/resources/Boot.png" width="16" height="16"> -- Move faster</li>
+					<li>Special<img src="http://smlp.pesce.me/resources/Cupcake.png" width="16" height="16"> -- Abilities are enhanced</li>
+					<li>Strength<img src="http://smlp.pesce.me/resources/Potion.png" width="16" height="16"> -- Get more satisfaction from giving love</li>
+					<li>Apple<img src="http://smlp.pesce.me/resources/Apple.png" width="16" height="16"> -- Instantly receive 50% remaining satisfaction</li>
 				</ul>
 			</li>
 			<hr>
@@ -157,7 +157,7 @@ This is a Java game created as a project for a CS class. It was created on the f
 				Auto updating
 			</li>
 			<hr>
-			<li>Has a <a href="http://smlp.pesce.host">website</a></li>
+			<li>Has a <a href="http://smlp.pesce.me">website</a></li>
 			<hr>
 			<li>Has a pretty main menu <details><summary>gif</summary><img src="/Screens/Menu.gif"/></details></li>
 			<hr>
