@@ -1,11 +1,11 @@
-#SUPER MAGICAL LOVE PARTY!
+# SUPER MAGICAL LOVE PARTY!
 by Nick Pesce
 
-##[Download](http://smlp.pesce.me/SuperMagicalLoveParty.jar)
-##Summary
+## [Download](http://smlp.pesce.me/SuperMagicalLoveParty.jar)
+## Summary
 This is a Java game created as a project for a CS class. It was created on the foundation that love is more powerful than violence and that violence is not needed in video games, or at all for that matter.
 
-##Features  
+## Features  
   <ul>
     <ul>
 			<li>Levels:
@@ -163,7 +163,7 @@ This is a Java game created as a project for a CS class. It was created on the f
 			<hr>
 		</ul>
 	
-##Technical Info
+## Technical Info
 Only libraries that were published by oracle were used.<br/>
 Created as a learning project.<br/>
 Worked on over the course of one year.<br/>
